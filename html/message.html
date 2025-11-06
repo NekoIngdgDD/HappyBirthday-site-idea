@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>A Special Message for Pingu</title>
+    <link rel="stylesheet" href="message.css" />
+    <link rel="stylesheet" href="styles.css" />
+    <link rel="icon" type="image/x-icon" href="assets/images/Penguin.png" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;500;600&family=Comfortaa:wght@400;600&family=Caveat:wght@400;500;600&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="shortcut icon" href="/assets/images/favicon.ico" type="image/x-icon" />
+    
+  </head>
+  <body>
+    <!-- Theme toggle -->
+    <div class="theme-toggle">
+      <button id="theme-button" onclick="toggleTheme()">🌙</button>
+    </div>
+    
+    <!-- Preloader -->
+    <div class="preloader">
+      <div class="loader-circle"></div>
+      <div class="preloader-penguin">💌</div>
+      <div class="loading-text">Loading Special Message...</div>
+    </div>
+
+    <!-- Top-left badge -->
+    <div class="badge" id="badge-text">💌 Special Message</div>
+
+    <!-- Navigation buttons -->
+    <a href="gifts.html" class="prev-button">
+      <span>⬅️</span> Back
+    </a>
+    <a href="index.html" class="next-button">
+      <span>&#127968;</span> Home
+    </a>
+
+    <!-- Message Content -->
+    <div class="glass-container message-container" id="message-container">
+      <div class="letter-paper">
+        <h1 class="message-greeting">Хайрт Pingu-дээ,</h1>
+        <p class="message-body" id="message-body"></p>
+        <p class="message-signature">from,<br />Neko 🐾</p>
+
+        <!-- Translate Button -->
+        <button id="translate-btn" style="display: none" class="translate-btn quick-nav-btn">
+          <span class="btn-icon">🇰🇷</span>
+          <span>Translate to Korean</span>
+        </button>
+      </div>
+    </div>
+
+    <!-- Floating Balloons -->
+    <div class="balloons">
+      <div class="balloon" style="--delay: 2s; --color: #FF9AA2;">💌</div>
+      <div class="balloon" style="--delay: 3s; --color: #FFB7B2;">💕</div>
+      <div class="balloon" style="--delay: 4s; --color: #FFDAC1;">💘</div>
+      <div class="balloon" style="--delay: 5s; --color: #E2F0CB;">💖</div>
+      <div class="balloon" style="--delay: 6s; --color: #B5EAD7;">💗</div>
+      <div class="balloon" style="--delay: 7s; --color: #C7CEEA;">💓</div>
+    </div>
+
+    <!-- Confetti container -->
+    <div id="confetti-container"></div>
+
+    <!-- Scripts -->
+    <script>
+      // Dark/light theme 
+      function toggleTheme() {
+        const body = document.body;
+        const themeButton = document.getElementById('theme-button');
+        
+        if (body.classList.contains('dark-theme')) {
+          body.classList.remove('dark-theme');
+          themeButton.textContent = '🌙'; // moon for dark mode
+          localStorage.setItem('theme', 'light');
+        } else {
+          body.classList.add('dark-theme');
+          themeButton.textContent = '☀️'; // sun for light mode
+          localStorage.setItem('theme', 'dark');
+        }
+      }
+      
+      // Check for saved theme preference
+      const savedTheme = localStorage.getItem('theme');
+      if (savedTheme === 'dark') {
+        document.body.classList.add('dark-theme');
+        document.getElementById('theme-button').textContent = '☀️';
+      }
+
+      const originalMessage = `Төрсөн өдрийн мэнд хүргэе! 🎉 Энэ онцгой өдрийг чинь хамтдаа тэмдэглэж байгаадаа үнэхээр их баяртай байна. Чиний инээмсэглэл, хөгжилтэй байдал бидний өдөр бүрийг гэрэлтүүлдэг шүү. Чамтай өнгөрүүлсэн хором мөч бүхэн үнэ цэнэтэй бөгөөд бидний дурсамжийн сан улам баяжсаар л... 😊 Ирэх жилүүдэд ч бас олон сайхан дурсамжийг хамтдаа бүтээцгээе! Дүүрэн хайр, аз жаргал, эрүүл энхийг хүсье! ❤️`;
+      const koreanMessage = `사랑하는 핀구에게,\n\n생일 축하해! 🎉 이 특별한 날을 너와 함께 축하할 수 있어서 정말 기뻐. 너의 미소와 즐거운 모습은 우리의 매일을 밝혀줘. 너와 함께 보낸 모든 순간은 소중하고, 우리의 추억 상자는 계속해서 풍성해지고 있어... 😊 앞으로도 함께 더 많은 멋진 추억들을 만들어가자! 많은 사랑, 행복, 그리고 건강을 기원하며! ❤️\n\n사랑을 담아,\n네코 🐾`;
+      let currentMessage = "original"; // Track current language
+
+      // Preloader logic
+      window.addEventListener("load", () => {
+        const preloader = document.querySelector('.preloader');
+        const messageContainer = document.getElementById("message-container");
+        
+        setTimeout(() => {
+          preloader.classList.add('preloader-fade');
+          setTimeout(() => {
+            preloader.classList.add('preloader-hidden');
+            
+            // Start animation and typing
+            createConfetti(30);
+            startTyping(originalMessage);
+          }, 500);
+        }, 1500);
+      });
+
+      // Audio toggle
+      // Navigation function with page transition
+      document.querySelectorAll('.prev-button, .next-button').forEach(btn => {
+        btn.addEventListener('click', function(e) {
+          e.preventDefault();
+          const targetPage = this.getAttribute('href');
+          
+          // Add page transition effect
+          document.body.classList.add('page-transition');
+          setTimeout(() => {
+            window.location.href = targetPage;
+          }, 300);
+        });
+      });
+
+      // Typing animation logic
+      const typingSpeed = 50;
+      let charIndex = 0;
+      let currentTypingText = "";
+
+      function startTyping(textToType) {
+        currentTypingText = textToType;
+        charIndex = 0; // Reset index for new text
+        const messageElement = document.getElementById("message-body");
+        messageElement.textContent = ""; // Clear previous text
+        messageElement.classList.remove("typing-done"); // Reset cursor animation
+        typeCharacter();
+      }
+
+      function typeCharacter() {
+        const messageElement = document.getElementById("message-body");
+        if (charIndex < currentTypingText.length) {
+          messageElement.textContent += currentTypingText.charAt(charIndex);
+          charIndex++;
+          setTimeout(typeCharacter, typingSpeed);
+        } else {
+          // Typing finished
+          messageElement.classList.add("typing-done"); // Stop cursor animation
+          const translateBtn = document.getElementById("translate-btn");
+          translateBtn.style.display = "inline-flex"; // Show button
+          translateBtn.onclick = toggleTranslation; // Assign click handler
+          
+          // Add button appear animation
+          translateBtn.classList.add("btn-appear");
+          
+          // Create confetti when message is fully displayed
+          createConfetti(20);
+        }
+      }
+
+      // Toggle Translation Logic
+      function toggleTranslation() {
+        const messageElement = document.getElementById("message-body");
+        const translateBtn = document.getElementById("translate-btn");
+        translateBtn.style.display = "none"; // Hide button during typing
+        translateBtn.classList.remove("btn-appear");
+
+        if (currentMessage === "original") {
+          startTyping(koreanMessage);
+          document.getElementById('translate-btn').innerHTML = '<span class="btn-icon">🇰🇷</span><span>Show Original</span>';
+          currentMessage = "korean";
+        } else {
+          startTyping(originalMessage);
+          document.getElementById('translate-btn').innerHTML = '<span class="btn-icon">🇰🇷</span><span>Translate to Korean</span>';
+          currentMessage = "original";
+        }
+      }
+      
+      // Confetti function from index.html
+      function createConfetti(amount) {
+        const container = document.getElementById('confetti-container');
+        const shapes = ['circle', 'square', 'triangle'];
+        
+        for (let i = 0; i < amount; i++) {
+          const confetti = document.createElement('div');
+          
+          // Randomly choose between emoji or shape
+          if (Math.random() > 0.7) {
+            // Emoji confetti
+            confetti.className = 'confetti-emoji';
+            const emojis = ['💌', '💕', '💘', '💖', '💗', '💓', '💞', '💝'];
+            confetti.textContent = emojis[Math.floor(Math.random() * emojis.length)];
+          } else {
+            // Shape confetti
+            const shapeType = shapes[Math.floor(Math.random() * shapes.length)];
+            confetti.className = `confetti confetti-${shapeType}`;
+            
+            // Random properties
+            const size = Math.random() * 10 + 5;
+            const colors = ['#ff9aa2', '#ffb7b2', '#ffdac1', '#e2f0cb', '#b5ead7', '#c7ceea', '#f9c1bb', '#ffd6e0'];
+            const color = colors[Math.floor(Math.random() * colors.length)];
+            
+            confetti.style.width = `${size}px`;
+            confetti.style.height = `${size}px`;
+            confetti.style.backgroundColor = color;
+          }
+          
+          // Random position
+          confetti.style.left = `${Math.random() * 100}%`;
+          confetti.style.top = `-20px`;
+          
+          // Random rotation and delay
+          confetti.style.transform = `rotate(${Math.random() * 360}deg)`;
+          confetti.style.animationDelay = `${Math.random() * 3}s`;
+          confetti.style.animationDuration = `${Math.random() * 2 + 3}s`;
+          
+          container.appendChild(confetti);
+          
+          // Remove after animation
+          setTimeout(() => {
+            if (confetti.parentNode === container) {
+              container.removeChild(confetti);
+            }
+          }, 6000);
+        }
+      }
+    </script>
+  </body>
+</html>

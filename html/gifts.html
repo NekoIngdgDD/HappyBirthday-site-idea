@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Gifts for Pingu!</title>
+    <link rel="icon" type="image/x-icon" href="assets/images/Penguin.png" />
+    <link rel="stylesheet" href="gifts.css" />
+    <link rel="stylesheet" href="styles.css" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;500;600&family=Comfortaa:wght@400;600&display=swap"
+      rel="stylesheet"
+    />
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+  </head>
+  <body>
+    <!-- Theme toggle -->
+    <div class="theme-toggle">
+      <button id="theme-button" onclick="toggleTheme()">🌙</button>
+    </div>
+    
+    <!-- Preloader -->
+    <div class="preloader">
+      <div class="loader-circle"></div>
+      <div class="preloader-penguin">🎁</div>
+      <div class="loading-text">Wrapping Your Gifts...</div>
+    </div>
+
+    <!-- Top-left Gifts Badge -->
+    <div class="badge">🎁 Pingu's Gifts</div>
+    
+    <!-- Navigation buttons -->
+    <a href="memories.html" class="prev-button memories-button">
+      <span>⬅️</span> Back
+    </a>
+    
+    <a href="message.html" class="next-button">
+      Next <span>➡️</span>
+    </a>
+
+    <!-- Floating Balloons -->
+    <div class="balloons">
+      <div class="balloon" style="--delay: 2s; --color: #FF9AA2;">🎁</div>
+      <div class="balloon" style="--delay: 3s; --color: #FFB7B2;">🎈</div>
+      <div class="balloon" style="--delay: 4s; --color: #FFDAC1;">🎉</div>
+      <div class="balloon" style="--delay: 5s; --color: #E2F0CB;">🎊</div>
+      <div class="balloon" style="--delay: 6s; --color: #B5EAD7;">🎁</div>
+    </div>
+
+    <!-- Main Content -->
+    <div class="glass-container gifts-container">
+      <h1 class="gifts-title">Special Gifts for You!</h1>
+      <p class="gifts-subtitle">Click each gift to unwrap your birthday surprises</p>
+      
+      <div class="gift-grid">
+        <!-- Gift 1 -->
+        <div class="gift-box" data-gift-content-id="gift-content-1">
+          <div class="gift-wrapper">
+            <div class="gift-emoji">🎁</div>
+            <div class="gift-sparkles">✨</div>
+          </div>
+          <div class="gift-label">Gift #1</div>
+        </div>
+        <div id="gift-content-1" class="gift-content">
+          <img src="assets/images/gift1.png" alt="Gift 1" />
+          <h3>Хүссэн 1 зүйлээ хийлгэх. </h3>
+          <p>if you want. </p>
+        </div>
+
+        <!-- Gift 2 -->
+        <div class="gift-box" data-gift-content-id="gift-content-2">
+          <div class="gift-wrapper">
+            <div class="gift-emoji">🎁</div>
+            <div class="gift-sparkles">✨</div>
+          </div>
+          <div class="gift-label">Gift #2</div>
+        </div>
+        <div id="gift-content-2" class="gift-content">
+          <img src="assets/images/gift2.png" alt="Poem" />
+          <h3>Хүссэн 1 зүйлээ асуух.</h3>
+          <p>if you want.</p>
+        </div>
+
+        <!-- Gift 3 -->
+        <div class="gift-box" data-gift-content-id="gift-content-3">
+          <div class="gift-wrapper">
+            <div class="gift-emoji">🎁</div>
+            <div class="gift-sparkles">✨</div>
+          </div>
+          <div class="gift-label">Gift #3</div>
+        </div>
+        <div id="gift-content-3" class="gift-content">
+          <img src="assets/images/gift3.png" alt="Plushie" />
+          <h3>Хүссэн 1 зүйл.</h3>
+          <p>if you want.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Confetti container -->
+    <div id="confetti-container"></div>
+
+    <!-- Improved Modal -->
+    <div id="gift-modal" class="modal">
+      <div class="modal-content glass-container">
+        <span class="close-button">&times;</span>
+        <div id="modal-body"></div>
+        <button class="modal-next-btn">Next Gift ➡️</button>
+      </div>
+    </div>
+
+    <script>
+      // Dark/light theme toggle
+      function toggleTheme() {
+        const body = document.body;
+        const themeButton = document.getElementById('theme-button');
+        
+        if (body.classList.contains('dark-theme')) {
+          body.classList.remove('dark-theme');
+          themeButton.textContent = '🌙'; // moon for dark mode
+          localStorage.setItem('theme', 'light');
+        } else {
+          body.classList.add('dark-theme');
+          themeButton.textContent = '☀️'; // sun for light mode
+          localStorage.setItem('theme', 'dark');
+        }
+      }
+      
+      // Check for saved theme preference
+      const savedTheme = localStorage.getItem('theme');
+      if (savedTheme === 'dark') {
+        document.body.classList.add('dark-theme');
+        document.getElementById('theme-button').textContent = '☀️';
+      }
+
+      // Create confetti effect
+      function createConfetti(amount, origin) {
+        confetti({
+          particleCount: amount,
+          spread: 100,
+          origin: origin || { y: 0.6 },
+          colors: ['#ff6b6b', '#feca57', '#54a0ff', '#ff9ff3', '#1dd1a1']
+        });
+      }
+
+      document.addEventListener("DOMContentLoaded", () => {
+        const giftBoxes = document.querySelectorAll(".gift-box");
+        const modal = document.getElementById("gift-modal");
+        const modalBody = document.getElementById("modal-body");
+        const closeButton = document.querySelector(".close-button");
+        const modalNextBtn = document.querySelector(".modal-next-btn");
+        let currentGiftIndex = 0;
+
+        // Preloader
+        setTimeout(() => {
+          document.querySelector('.preloader').classList.add('preloader-fade');
+          setTimeout(() => {
+            document.querySelector('.preloader').classList.add('preloader-hidden');
+            
+            // Animate title and grid
+            document.querySelector('.gifts-title').style.opacity = '1';
+            document.querySelector('.gifts-subtitle').style.opacity = '1';
+            setTimeout(() => {
+              document.querySelector('.gift-grid').style.opacity = '1';
+              document.querySelector('.gift-grid').style.transform = 'translateY(0)';
+              
+              // Initial confetti
+              createConfetti(30);
+            }, 300);
+          }, 500);
+        }, 1500);
+
+        // Add better movement to gifts
+        const giftBoxesArray = Array.from(giftBoxes);
+        giftBoxesArray.forEach((box, index) => {
+          box.style.animationDelay = `${index * 0.3}s`;
+          
+          box.addEventListener("click", () => {
+            if (box.classList.contains("opened")) return;
+
+            box.classList.add("opened");
+            currentGiftIndex = index;
+            const contentId = box.getAttribute("data-gift-content-id");
+            const contentElement = document.getElementById(contentId);
+
+            if (contentElement) {
+              modalBody.innerHTML = contentElement.innerHTML;
+              modal.style.display = "flex";
+              modal.classList.add("modal-active");
+
+              // Calculate origin for confetti
+              const boxRect = box.getBoundingClientRect();
+              const origin = { 
+                x: (boxRect.left + boxRect.width / 2) / window.innerWidth,
+                y: (boxRect.top + boxRect.height / 2) / window.innerHeight 
+              };
+              
+              createConfetti(200, origin);
+              
+              // Show/hide next button based on whether there are more gifts
+              modalNextBtn.style.display = index < giftBoxesArray.length - 1 ? 'block' : 'none';
+            }
+          });
+        });
+
+        // Modal next button logic
+        modalNextBtn.addEventListener("click", () => {
+          if (currentGiftIndex < giftBoxesArray.length - 1) {
+            currentGiftIndex++;
+            const nextGift = giftBoxesArray[currentGiftIndex];
+            
+            // If not opened yet, mark as opened
+            if (!nextGift.classList.contains("opened")) {
+              nextGift.classList.add("opened");
+            }
+            
+            const contentId = nextGift.getAttribute("data-gift-content-id");
+            const contentElement = document.getElementById(contentId);
+            
+            if (contentElement) {
+              modalBody.innerHTML = contentElement.innerHTML;
+              createConfetti(100);
+            }
+            
+            // Hide next button if we're at the last gift
+            if (currentGiftIndex >= giftBoxesArray.length - 1) {
+              modalNextBtn.style.display = 'none';
+            }
+          }
+        });
+
+        closeButton.addEventListener("click", () => {
+          modal.classList.remove("modal-active");
+          setTimeout(() => {
+            modal.style.display = "none";
+          }, 300);
+        });
+
+        window.addEventListener("click", (event) => {
+          if (event.target === modal) {
+            modal.classList.remove("modal-active");
+            setTimeout(() => {
+              modal.style.display = "none";
+            }, 300);
+          }
+        });
+        
+        // Navigation with page transition
+        document.querySelectorAll('.prev-button, .next-button').forEach(btn => {
+          btn.addEventListener('click', function(e) {
+            e.preventDefault();
+            const targetPage = this.getAttribute('href');
+            
+            // Add page transition effect
+            document.body.classList.add('page-transition');
+            setTimeout(() => {
+              window.location.href = targetPage;
+            }, 300);
+          });
+        });
+      });
+    </script>
+  </body>
+</html>

@@ -1,0 +1,496 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Pingu's Memories</title>
+    <link rel="stylesheet" href="memories.css" />
+    <link rel="stylesheet" href="styles.css" />
+    <link rel="icon" type="image/x-icon" href="assets/images/Penguin.png" />
+    <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;500;600&family=Comfortaa:wght@400;600&display=swap" rel="stylesheet" />
+  </head>
+  <body>
+    <!-- Theme toggle -->
+    <div class="theme-toggle">
+      <button id="theme-button" onclick="toggleTheme()">🌙</button>
+    </div>
+    
+    <!-- Preloader -->
+    <div class="preloader">
+      <div class="loader-circle"></div>
+      <div class="preloader-penguin">🎞️</div>
+      <div class="loading-text">Loading Memories...</div>
+    </div>
+    
+    <!-- Top-left badge -->
+    <div class="badge">🎞️ Pingu's Memories</div>
+    
+    <!-- Category Buttons -->
+    <div class="category-toggle">
+      <button class="category-btn active" onclick="filterMedia('all')">
+        <span class="btn-icon">🌟</span> All
+      </button>
+      <button class="category-btn" onclick="filterMedia('images')">
+        <span class="btn-icon">📷</span> Images
+      </button>
+      <button class="category-btn" onclick="filterMedia('videos')">
+        <span class="btn-icon">🎬</span> Videos
+      </button>
+    </div>
+
+    <!-- Navigation buttons -->
+    <a href="biu.html" class="prev-button">
+      <span>⬅️</span> Back
+    </a>
+    
+    <a href="gifts.html" class="next-button">
+      Next <span>➡️</span>
+    </a>
+
+    <!-- Floating Balloons -->
+    <div class="balloons">
+      <div class="balloon" style="--delay: 2s; --color: #FF9AA2;">🎞️</div>
+      <div class="balloon" style="--delay: 3s; --color: #FFB7B2;">📸</div>
+      <div class="balloon" style="--delay: 4s; --color: #FFDAC1;">🎬</div>
+      <div class="balloon" style="--delay: 5s; --color: #E2F0CB;">📷</div>
+      <div class="balloon" style="--delay: 6s; --color: #B5EAD7;">🎞️</div>
+    </div>
+
+    <!-- Gallery container with header -->
+    <div class="glass-container memories-container">
+      <h1 class="gallery-title">Special Memories</h1>
+      <p class="gallery-subtitle">Tap any image or video to view it</p>
+      
+      <!-- Gallery -->
+      <div class="gallery">
+        <img
+          src="assets/memoriesimage/1.jpg"
+          class="gallery-item"
+          alt="Memory 1"
+          onclick="openLightbox(this)"
+          loading="lazy"
+        />
+        <img
+          src="assets/memoriesimage/2.jpg"
+          class="gallery-item"
+          alt="Memory 2"
+          onclick="openLightbox(this)"
+          loading="lazy"
+        />
+        <img
+          src="assets/memoriesimage/3.jpg"
+          class="gallery-item"
+          alt="Memory 3"
+          onclick="openLightbox(this)"
+          loading="lazy"
+        />
+        <img
+          src="assets/memoriesimage/4.jpg"
+          class="gallery-item"
+          alt="Memory 4"
+          onclick="openLightbox(this)"
+          loading="lazy"
+        />
+        <img
+          src="assets/memoriesimage/5.jpg"
+          class="gallery-item"
+          alt="Memory 5"
+          onclick="openLightbox(this)"
+          loading="lazy"
+        />
+        <img
+          src="assets/memoriesimage/6.jpg"
+          class="gallery-item"
+          alt="Memory 6"
+          onclick="openLightbox(this)"
+          loading="lazy"
+        />
+        <img
+          src="assets/memoriesimage/8.jpg"
+          class="gallery-item"
+          alt="Memory 8"
+          onclick="openLightbox(this)"
+          loading="lazy"
+        />
+        <img
+          src="assets/memoriesimage/9.jpg"
+          class="gallery-item"
+          alt="Memory 9"
+          onclick="openLightbox(this)"
+          loading="lazy"
+        />
+        <img
+          src="assets/memoriesimage/10.jpg"
+          class="gallery-item"
+          alt="Memory 10"
+          onclick="openLightbox(this)"
+          loading="lazy"
+        />
+        <img
+          src="assets/memoriesimage/11.jpg"
+          class="gallery-item"
+          alt="Memory 11"
+          onclick="openLightbox(this)"
+          loading="lazy"
+        />
+        <img
+          src="assets/memoriesimage/12.jpg"
+          class="gallery-item"
+          alt="Memory 12"
+          onclick="openLightbox(this)"
+          loading="lazy"
+        />
+        <img
+          src="assets/memoriesimage/13.jpg"
+          class="gallery-item"
+          alt="Memory 13"
+          onclick="openLightbox(this)"
+          loading="lazy"
+        />
+        <img
+          src="assets/memoriesimage/14.jpg"
+          class="gallery-item"
+          alt="Memory 14"
+          onclick="openLightbox(this)"
+          loading="lazy"
+        />
+        <img
+          src="assets/memoriesimage/15.jpg"
+          class="gallery-item"
+          alt="Memory 15"
+          onclick="openLightbox(this)"
+          loading="lazy"
+        />
+        <img
+          src="assets/memoriesimage/16.jpg"
+          class="gallery-item"
+          alt="Memory 16"
+          onclick="openLightbox(this)"
+          loading="lazy"
+        />
+        <img
+          src="assets/memoriesimage/17.jpg"
+          class="gallery-item"
+          alt="Memory 17"
+          onclick="openLightbox(this)"
+          loading="lazy"
+        />
+        <img
+          src="assets/memoriesimage/18.jpg"
+          class="gallery-item"
+          alt="Memory 18"
+          onclick="openLightbox(this)"
+          loading="lazy"
+        />
+        <img
+          src="assets/memoriesimage/19.jpg"
+          class="gallery-item"
+          alt="Memory 19"
+          onclick="openLightbox(this)"
+          loading="lazy"
+        />
+        <img
+          src="assets/memoriesimage/20.jpg"
+          class="gallery-item"
+          alt="Memory 20"
+          onclick="openLightbox(this)"
+          loading="lazy"
+        />
+        <img
+          src="assets/memoriesimage/21.jpg"
+          class="gallery-item"
+          alt="Memory 21"
+          onclick="openLightbox(this)"
+          loading="lazy"
+        />
+        <img
+          src="assets/memoriesimage/22.jpg"
+          class="gallery-item"
+          alt="Memory 22"
+          onclick="openLightbox(this)"
+          loading="lazy"
+        />
+        <img
+          src="assets/memoriesimage/24.jpg"
+          class="gallery-item"
+          alt="Memory 24"
+          onclick="openLightbox(this)"
+          loading="lazy"
+        />
+        <img
+          src="assets/memoriesimage/25.jpg"
+          class="gallery-item"
+          alt="Memory 25"
+          onclick="openLightbox(this)"
+          loading="lazy"
+        />
+        <img
+          src="assets/memoriesimage/26.jpg"
+          class="gallery-item"
+          alt="Memory 26"
+          onclick="openLightbox(this)"
+          loading="lazy"
+        />
+        <img
+          src="assets/memoriesimage/27.jpg"
+          class="gallery-item"
+          alt="Memory 27"
+          onclick="openLightbox(this)"
+          loading="lazy"
+        />
+        <img
+          src="assets/memoriesimage/28.jpg"
+          class="gallery-item"
+          alt="Memory 28"
+          onclick="openLightbox(this)"
+          loading="lazy"
+        />
+        <img
+          src="assets/memoriesimage/29.jpg"
+          class="gallery-item"
+          alt="Memory 29"
+          onclick="openLightbox(this)"
+          loading="lazy"
+        />
+        <img
+          src="assets/memoriesimage/30.jpg"
+          class="gallery-item"
+          alt="Memory 30"
+          onclick="openLightbox(this)"
+          loading="lazy"
+        />
+        <img
+          src="assets/memoriesimage/31.jpg"
+          class="gallery-item"
+          alt="Memory 31"
+          onclick="openLightbox(this)"
+          loading="lazy"
+        />
+        <img
+          src="assets/memoriesimage/32.jpg"
+          class="gallery-item"
+          alt="Memory 32"
+          onclick="openLightbox(this)"
+          loading="lazy"
+        />
+        <img
+          src="assets/memoriesimage/33.jpg"
+          class="gallery-item"
+          alt="Memory 30"
+          onclick="openLightbox(this)"
+          loading="lazy"
+        />
+        <video
+          src="assets/memoriesvideo/1.mp4"
+          class="gallery-item"
+          controls
+          poster="assets/memoriesimage/1.jpg"
+        ></video>
+        <video
+          src="assets/memoriesvideo/2.mp4"
+          class="gallery-item"
+          controls
+          poster="assets/memoriesimage/2.jpg"
+        ></video>
+      </div>
+    </div>
+
+    <!-- Lightbox with improved controls -->
+    <div id="lightbox">
+      <span class="close" onclick="closeLightbox()">&times;</span>
+      <button class="lightbox-nav prev" id="lightbox-prev">&lt;</button>
+      <img id="lightbox-img" />
+      <button class="lightbox-nav next" id="lightbox-next">&gt;</button>
+      <div class="lightbox-caption"></div>
+    </div>
+
+    <script>
+      // Dark/light theme toggle
+      function toggleTheme() {
+        const body = document.body;
+        const themeButton = document.getElementById('theme-button');
+        
+        if (body.classList.contains('dark-theme')) {
+          body.classList.remove('dark-theme');
+          themeButton.textContent = '🌙'; // moon for dark mode
+          localStorage.setItem('theme', 'light');
+        } else {
+          body.classList.add('dark-theme');
+          themeButton.textContent = '☀️'; // sun for light mode
+          localStorage.setItem('theme', 'dark');
+        }
+      }
+      
+      // Check for saved theme preference
+      const savedTheme = localStorage.getItem('theme');
+      if (savedTheme === 'dark') {
+        document.body.classList.add('dark-theme');
+        document.getElementById('theme-button').textContent = '☀️';
+      }
+
+      // Gallery items for navigation
+      let galleryItems = [];
+      let currentItemIndex = 0;
+      
+      // Initialize on document load
+      document.addEventListener('DOMContentLoaded', function() {
+        // Init gallery items
+        galleryItems = document.querySelectorAll('.gallery-item');
+        
+        // Animate items on load
+        animateGalleryItems();
+        
+        // Setup lightbox navigation
+        document.getElementById('lightbox-prev').addEventListener('click', showPrevItem);
+        document.getElementById('lightbox-next').addEventListener('click', showNextItem);
+        
+        // Preloader
+        setTimeout(() => {
+          document.querySelector('.preloader').classList.add('preloader-fade');
+          setTimeout(() => {
+            document.querySelector('.preloader').classList.add('preloader-hidden');
+            
+            // Animate title and grid
+            document.querySelector('.gallery-title').style.opacity = '1';
+            document.querySelector('.gallery-subtitle').style.opacity = '1';
+            setTimeout(() => {
+              document.querySelector('.gallery').style.opacity = '1';
+              document.querySelector('.gallery').style.transform = 'translateY(0)';
+            }, 300);
+          }, 500);
+        }, 1500);
+        
+        // Navigation with page transition
+        document.querySelectorAll('.prev-button, .next-button').forEach(btn => {
+          btn.addEventListener('click', function(e) {
+            e.preventDefault();
+            const targetPage = this.getAttribute('href');
+            
+            // Add page transition effect
+            document.body.classList.add('page-transition');
+            setTimeout(() => {
+              window.location.href = targetPage;
+            }, 300);
+          });
+        });
+      });
+      
+      // Animate gallery items when they come into view
+      function animateGalleryItems() {
+        const items = document.querySelectorAll('.gallery-item');
+        
+        const observer = new IntersectionObserver((entries) => {
+          entries.forEach(entry => {
+            if (entry.isIntersecting) {
+              entry.target.classList.add('visible');
+              observer.unobserve(entry.target);
+            }
+          });
+        }, {
+          threshold: 0.1
+        });
+        
+        items.forEach(item => {
+          observer.observe(item);
+        });
+      }
+      
+      function openLightbox(element) {
+        const lightbox = document.getElementById("lightbox");
+        const lightboxImg = document.getElementById("lightbox-img");
+        
+        lightboxImg.src = element.src;
+        lightbox.style.display = "flex";
+        
+        document.querySelector(".lightbox-caption").textContent = element.alt;
+        
+        // Set current index for navigation
+        galleryItems.forEach((item, index) => {
+          if (item === element) currentItemIndex = index;
+        });
+        
+        updateLightboxNavigation();
+      }
+      
+      function showPrevItem() {
+        if (currentItemIndex > 0) {
+          currentItemIndex--;
+          const prevItem = galleryItems[currentItemIndex];
+          openLightbox(prevItem);
+        }
+      }
+      
+      function showNextItem() {
+        if (currentItemIndex < galleryItems.length - 1) {
+          currentItemIndex++;
+          const nextItem = galleryItems[currentItemIndex];
+          openLightbox(nextItem);
+        }
+      }
+      
+      function updateLightboxNavigation() {
+        const prevBtn = document.getElementById('lightbox-prev');
+        const nextBtn = document.getElementById('lightbox-next');
+        
+        prevBtn.style.visibility = currentItemIndex > 0 ? 'visible' : 'hidden';
+        nextBtn.style.visibility = currentItemIndex < galleryItems.length - 1 ? 'visible' : 'hidden';
+      }
+      
+      function closeLightbox() {
+        document.getElementById("lightbox").style.display = "none";
+      }
+      
+      function filterMedia(category) {
+        const items = document.querySelectorAll(".gallery-item");
+        const buttons = document.querySelectorAll(".category-btn");
+        
+        // Update active button
+        buttons.forEach(btn => btn.classList.remove("active"));
+        event.currentTarget.classList.add("active");
+        
+        // Add fade effect
+        items.forEach(item => {
+          item.style.opacity = '0';
+          item.style.transform = 'scale(0.95)';
+          item.style.transition = 'opacity 0.3s ease, transform 0.3s ease';
+        });
+        
+        // Show filtered items with delay
+        setTimeout(() => {
+          let visibleCount = 0;
+          
+          items.forEach(item => {
+            if (category === "all" || 
+                (category === "images" && item.tagName === "IMG") || 
+                (category === "videos" && item.tagName === "VIDEO")) {
+              
+              item.style.display = "block";
+              visibleCount++;
+              
+              // Staggered animation
+              setTimeout(() => {
+                item.style.opacity = '1';
+                item.style.transform = 'scale(1)';
+              }, 30 * visibleCount);
+              
+            } else {
+              item.style.display = "none";
+            }
+          });
+          
+          // Update gallery layout
+          document.querySelector('.gallery').style.opacity = '1';
+        }, 300);
+      }
+      
+      // Keyboard navigation for lightbox
+      document.addEventListener('keydown', function(e) {
+        if (document.getElementById('lightbox').style.display === 'flex') {
+          if (e.key === 'ArrowLeft') showPrevItem();
+          if (e.key === 'ArrowRight') showNextItem();
+          if (e.key === 'Escape') closeLightbox();
+        }
+      });
+    </script>
+  </body>
+</html>
