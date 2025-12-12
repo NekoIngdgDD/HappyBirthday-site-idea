@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title> Pingune's Timeline | Birthday Celebration</title>
+    <meta
+      name="description"
+      content="A special timeline journey of memories for Pingu's birthday celebration."
+    />
+    <meta
+      name="keywords"
+      content="birthday, celebration, pingu, timeline, journey, memories"
+    />
+
+    <!-- Open Graph / Social Media Meta Tags -->
+    <meta property="og:title" content="Pingu's Timeline | Pingu's Birthday" />
+    <meta
+      property="og:description"
+      content="A chronological journey of our special moments together."
+    />
+    <meta property="og:image" content="/assets/images/pingu.png" />
+    <meta property="og:url" content="https://pingusbirthday.com/timeline" />
+    <meta property="og:type" content="website" />
+
+    <link rel="icon" type="image/x-icon" href="assets/images/Penguin.png" />
+    <link rel="stylesheet" href="timeline.css" />
+    <link rel="stylesheet" href="styles.css" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;600&family=Comfortaa:wght@400;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="shortcut icon"
+      href="/assets/images/favicon.ico"
+      type="image/x-icon"
+    />
+  </head>
+  <body>
+    <!-- Theme toggle -->
+    <div class="theme-toggle">
+      <button id="theme-button" onclick="toggleTheme()">🌙</button>
+    </div>
+    
+    <!-- Audio Control -->
+    <div class="audio-control">
+      <button id="music-toggle" onclick="toggleMusic()">🔈</button>
+      <audio id="background-audio" loop>
+        <source src="assets/songs/yg cham shig.mp3" type="audio/mp3">
+        Your browser does not support the audio element.
+      </audio>
+    </div>
+
+    <!-- Preloader -->
+    <div class="preloader">
+      <div class="loader-circle"></div>
+      <div class="preloader-penguin">📅</div>
+      <div class="loading-text">Loading Timeline Magic...</div>
+    </div>
+
+    <!-- Top-left badge -->
+    <div class="badge" id="badge-text">📅 Timeline</div>
+
+    <!-- Header Navigation -->
+    <a href="index.html" class="prev-button">
+        <span>⬅️</span> Back
+      </a>
+    </div>
+
+    <!-- Main content wrapper -->
+    <div class="timeline-content">
+      <div class="glass-container">
+        <h1 class="timeline-title">Funny Journey Pingu 💖</h1>
+        <p class="timeline-subtitle">A chronological adventure of special moments</p>
+
+        <!-- Timeline Container -->
+        <div class="timeline-container">
+          <!-- Timeline Item 1 -->
+          <div class="timeline-item left">
+            <div class="timeline-date">March 4,2025</div>
+            <div class="timeline-content-box">
+              <h3>First Meeting</h3>
+              <p>Roy,Kader,Bryson,Connie,Pingune meeting</p>
+              <div class="timeline-image">
+                <img src="/assets/images/meeting.jpg" alt="First Meeting" onclick="openLightbox(this)" />
+              </div>
+            </div>
+          </div>
+
+          <!-- Timeline Item 2 -->
+          <div class="timeline-item right">
+            <div class="timeline-date">March 5, 2025</div>
+            <div class="timeline-content-box">
+              <h3>Iconic Bye</h3>
+              <p>Iconic deer gargaj ogsn ;-;</p>
+              <div class="timeline-image">
+                <img src="/assets/images/iconic.jpg" alt="Iconic Mongolia" onclick="openLightbox(this)"/>
+              </div>
+            </div>
+          </div>
+
+          <!-- Timeline Item 3 -->
+          <div class="timeline-item left">
+            <div class="timeline-date">March 7, 2025</div>
+            <div class="timeline-content-box">
+              <h3>Flight</h3>
+              <p>We love you, miss you Pingune!</p>
+              <div class="timeline-image">
+                <img src="/assets/images/flight.jpg" alt="Adventure Trip" onclick="openLightbox(this)"/>
+              </div>
+            </div>
+          </div>
+
+          <!-- Timeline Item 4 -->
+          <div class="timeline-item right">
+            <div class="timeline-date">March 14,2025</div>
+            <div class="timeline-content-box">
+              <h3>Tsuivan</h3>
+              <p>Amttai tsuivan.</p>
+              <div class="timeline-image">
+                <img src="/assets/images/Tsuivan.jpg" alt="Tsuivan" onclick="openLightbox(this)"/>
+              </div>
+            </div>
+          </div>
+
+          <!-- Timeline Item 5 -->
+          <div class="timeline-item left">
+            <div class="timeline-date">March 21,2025</div>
+            <div class="timeline-content-box">
+              <h3>Sonin Doggbugi</h3>
+              <p>Huh???</p>
+              <div class="timeline-image">
+                <img src="/assets/images/doggbugi.jpg" alt="Doggbugi" onclick="openLightbox(this)"/>
+              </div>
+            </div>
+          </div>
+
+          <!-- Timeline Item 6 -->
+          <div class="timeline-item right">
+            <div class="timeline-date">March 22,2025</div>
+            <div class="timeline-content-box">
+              <h3>Snacks</h3>
+              <p>Expensive snacks!</p>
+              <div class="timeline-image">
+                <img src="/assets/images/Snacks.jpg" alt="Pingu's Flight" onclick="openLightbox(this)"/>
+              </div>
+            </div>
+          </div>
+
+          <!-- Timeline Item 7 -->
+          <div class="timeline-item left">
+            <div class="timeline-date">March 23,2025</div>
+            <div class="timeline-content-box">
+              <h3>McDonald </h3>
+              <p>Burger Fries.</p>
+              <div class="timeline-image">
+                <img src="/assets/images/mcdonald.jpg" alt="McDonalds" onclick="openLightbox(this)"/>
+              </div>
+            </div>
+          </div>
+
+          <!-- Timeline Item 8 -->
+          <div class="timeline-item right">
+            <div class="timeline-date">March 26,2025</div>
+            <div class="timeline-content-box">
+              <h3>Coffee</h3>
+              <p>Yoger presso? </p>
+              <div class="timeline-image">
+                <img src="/assets/images/Expresso.jpg" alt="Pingu's Coffee" onclick="openLightbox(this)"/>
+              </div>
+            </div>
+          </div>
+
+          <!-- Timeline Item 9 -->
+          <div class="timeline-item left">
+            <div class="timeline-date">March 29,2025</div>
+            <div class="timeline-content-box">
+              <h3>Set food</h3>
+              <p>Hool gudralt gsn xD</p>
+              <div class="timeline-image">
+                <img src="/assets/images/set.jpg" alt="Pingu's Food" onclick="openLightbox(this)"/>
+              </div>
+            </div>
+          </div>
+
+          <!-- Timeline Item 10 -->
+          <div class="timeline-item right">
+            <div class="timeline-date">Today</div>
+            <div class="timeline-content-box special-date">
+              <h3>Your Birthday!</h3>
+              <p>Today is all about celebrating you! Happy Birthday, Pingune ! ❤️</p>
+              <div class="timeline-image">
+                <img src="/assets/images/happybirth.jpg" alt="Birthday" />
+              </div>
+              <div class="timeline-confetti">
+                🎉 🎂 🎁 🎈 🥳
+              </div>
+            </div>
+          </div>
+        </div>
+
+    <!-- Floating Balloons -->
+    <div class="balloons">
+      <div class="balloon" style="--delay: 2s; --color: #ff9aa2">🎈</div>
+      <div class="balloon" style="--delay: 3s; --color: #ffb7b2">🎈</div>
+      <div class="balloon" style="--delay: 4s; --color: #ffdac1">🎈</div>
+      <div class="balloon" style="--delay: 5s; --color: #e2f0cb">🎈</div>
+      <div class="balloon" style="--delay: 6s; --color: #b5ead7">🎈</div>
+      <div class="balloon" style="--delay: 4s; --color: #c7ceea">🎈</div>
+    </div>
+
+    <!-- Bottom-left controls -->
+    <div class="controls-bottom-left">
+    </div>
+
+  
+
+    <script>
+      // DOM Elements
+      const preloader = document.querySelector(".preloader");
+      const themeButton = document.getElementById("theme-button");
+      
+      // Navigation with transition
+      function navigateTo(url) {
+        document.body.classList.add("page-transition");
+        setTimeout(() => {
+          window.location.href = url;
+        }, 300);
+      }
+
+      // Theme toggle
+      function toggleTheme() {
+        document.body.classList.toggle("dark-theme");
+        
+        if (document.body.classList.contains("dark-theme")) {
+          themeButton.textContent = "☀️";
+          localStorage.setItem("theme", "dark");
+        } else {
+          themeButton.textContent = "🌙";
+          localStorage.setItem("theme", "light");
+        }
+      }
+      
+      // Background Music Functions
+      function initBackgroundMusic() {
+        const audio = document.getElementById("background-audio");
+        audio.volume = 0.05; // Set to very low volume
+        
+        // Try to play music (browsers may block autoplay)
+        audio.play().catch((e) => {
+          console.log("Auto-play prevented:", e);
+          document.getElementById("music-toggle").textContent = "🔇";
+        });
+      }
+      
+      function toggleMusic() {
+        const audio = document.getElementById("background-audio");
+        const musicButton = document.getElementById("music-toggle");
+        
+        if (audio.paused) {
+          audio.play();
+          musicButton.textContent = "🔈";
+        } else {
+          audio.pause();
+          musicButton.textContent = "🔇";
+        }
+      }
+
+      // Page setup when loaded
+      document.addEventListener("DOMContentLoaded", function() {
+        // Hide preloader with animation
+        setTimeout(() => {
+          preloader.classList.add("preloader-fade");
+          setTimeout(() => {
+            preloader.classList.add("preloader-hidden");
+            // Start audio after preloader
+            initBackgroundMusic();
+          }, 500);
+        }, 1500);
+
+        // Set theme from localStorage
+        const savedTheme = localStorage.getItem("theme");
+        if (savedTheme === "dark") {
+          document.body.classList.add("dark-theme");
+          themeButton.textContent = "☀️";
+        }
+
+        // Animate timeline items as they come into view
+        const observerOptions = {
+          threshold: 0.2,
+          rootMargin: "0px 0px -100px 0px"
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+          entries.forEach(entry => {
+            if (entry.isIntersecting) {
+              entry.target.classList.add('animate');
+              observer.unobserve(entry.target);
+            }
+          });
+        }, observerOptions);
+
+        document.querySelectorAll('.timeline-item').forEach(item => {
+          observer.observe(item);
+        });
+      });
+    </script>
+  </body>
+</html> 

@@ -1,0 +1,415 @@
+/* Include variables from global styles */
+@import url('styles.css');
+
+/* Base styles */
+body {
+  margin: 0;
+  padding: 0;
+  background: var(--background-gradient);
+  background-size: 400% 400%;
+  animation: gradientBackground 15s ease infinite;
+  color: var(--text-color);
+  font-family: "Indie Flower", cursive;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  position: relative;
+  overflow-x: hidden;
+  transition: var(--transition);
+}
+
+/* Message container specific styles */
+.message-container {
+  max-width: 700px;
+  width: 90%;
+  margin: 50px auto;
+  padding: 0;
+  position: relative;
+  overflow: hidden;
+  animation: fadeIn 1s ease-out 0.5s both;
+}
+
+/* Paper texture background */
+.letter-paper {
+  background: var(--glass-bg);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid var(--glass-border);
+  border-radius: 20px;
+  padding: 40px;
+  box-shadow: 0 10px 30px var(--shadow-color);
+  color: var(--text-color);
+  position: relative;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  animation: letterAppear 1s ease-out;
+  background-image: var(--gradient-card);
+  /* Add subtle paper texture */
+  background-image: url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.7' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100' height='100' filter='url(%23noise)' opacity='0.05'/%3E%3C/svg%3E"), var(--gradient-card);
+  background-blend-mode: overlay;
+}
+
+.letter-paper:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 15px 40px var(--shadow-color);
+}
+
+@keyframes letterAppear {
+  from {
+    opacity: 0;
+    transform: translateY(30px) scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+/* Greeting styles */
+.message-greeting {
+  font-family: "Dancing Script", cursive;
+  font-size: 42px;
+  margin-bottom: 30px;
+  color: var(--text-color);
+  font-weight: 700;
+  text-shadow: 1px 1px 2px var(--glass-shadow);
+  background: var(--gradient-1);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: fadeIn 1s ease-out 0.7s both;
+  letter-spacing: 1px;
+}
+
+/* Message body styles with typing effect */
+.message-body {
+  font-family: "Caveat", cursive;
+  font-size: 22px;
+  line-height: 1.6;
+  margin-bottom: 40px;
+  white-space: pre-wrap;
+  position: relative;
+  animation: fadeIn 1s ease-out 0.9s both;
+  color: var(--text-color);
+  letter-spacing: 0.5px;
+}
+
+/* Typing cursor effect */
+.message-body::after {
+  content: "|";
+  position: relative;
+  display: inline-block;
+  color: var(--text-color);
+  animation: blinkCursor 0.8s infinite;
+}
+
+.message-body.typing-done::after {
+  display: none;
+}
+
+@keyframes blinkCursor {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0; }
+}
+
+/* Signature styles */
+.message-signature {
+  font-family: "Caveat", cursive;
+  font-size: 32px;
+  line-height: 1.5;
+  text-align: right;
+  margin-right: 30px;
+  margin-top: 30px;
+  color: var(--text-color);
+  animation: fadeIn 1s ease-out 1.1s both;
+  font-weight: 600;
+}
+
+/* Translation button styles */
+.translate-btn {
+  position: relative; 
+  bottom: 0;
+  right: 0;
+  margin-top: 20px;
+  transform-origin: center;
+  animation: btn-appear 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+  font-family: "Quicksand", sans-serif; /* Keep UI elements with normal font */
+}
+
+.btn-appear {
+  animation: popIn 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+}
+
+/* Handwritten UI elements */
+.badge, .loading-text {
+  font-weight: 600;
+  font-size: 1.2em;
+}
+
+.loading-text {
+  font-family: "Caveat", cursive;
+}
+
+.quick-nav .quick-nav-btn span:not(.btn-icon) {
+  font-family: "Caveat", cursive;
+  font-size: 1.2em;
+  font-weight: 600;
+}
+
+@keyframes popIn {
+  0% {
+    opacity: 0;
+    transform: scale(0.8);
+  }
+  70% {
+    opacity: 1;
+    transform: scale(1.1);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+/* Animations */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes floatIn {
+  0% {
+    opacity: 0;
+    transform: translateY(40px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Make quick-nav buttons appear one by one */
+.quick-nav .quick-nav-btn:nth-child(1) {
+  animation: fadeIn 0.5s ease-out 1.3s both;
+}
+
+.quick-nav .quick-nav-btn:nth-child(2) {
+  animation: fadeIn 0.5s ease-out 1.5s both;
+}
+
+.quick-nav .quick-nav-btn:nth-child(3) {
+  animation: fadeIn 0.5s ease-out 1.7s both;
+}
+
+.quick-nav .quick-nav-btn:nth-child(4) {
+  animation: fadeIn 0.5s ease-out 1.9s both;
+}
+
+/* Heart floating background particles */
+.heart-particle {
+  position: absolute;
+  background-color: var(--accent-color);
+  opacity: 0.2;
+  border-radius: 50%;
+  pointer-events: none;
+  animation: float 15s infinite linear;
+}
+
+/* Responsive styles */
+@media (max-width: 768px) {
+  .letter-paper {
+    padding: 30px;
+  }
+  
+  .message-greeting {
+    font-size: 36px;
+  }
+  
+  .message-body {
+    font-size: 20px;
+  }
+  
+  .message-signature {
+    font-size: 28px;
+  }
+  
+  .quick-nav {
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+}
+
+@media (max-width: 480px) {
+  .letter-paper {
+    padding: 20px;
+  }
+  
+  .message-greeting {
+    font-size: 32px;
+  }
+  
+  .message-body {
+    font-size: 18px;
+    line-height: 1.5;
+  }
+  
+  .message-signature {
+    font-size: 26px;
+    margin-right: 10px;
+  }
+  
+  
+  .badge {
+    position: fixed;
+    top: 20px;
+    left: 100px;
+    background: var(--glass-bg);
+    backdrop-filter: blur(8px);
+    border: var(--glass-border);
+    box-shadow: var(--glass-shadow);
+    padding: 10px 25px;
+    border-radius: 25px;
+    font-size: 18px;
+    font-weight: 600;
+    color: var(--text-color);
+    z-index: 50;
+    text-align: center;
+  }
+  
+  .translate-btn {
+    padding: 8px 16px;
+    font-size: 14px;
+  }
+}
+
+/* Navigation Buttons */
+.prev-button, .next-button {
+  position: fixed;
+  background: transparent;
+  border: none;
+  box-shadow: none;
+  color: var(--text-color);
+  font-size: 20px; /* Increased font size */
+  font-weight: 600;
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 90;
+  transition: transform 0.3s ease;
+  width: 150px; /* Increased width */
+  height: 150px; /* Increased height */
+  top: 50%;
+  transform: translateY(-50%);
+  background-image: url("https://cdn.pixabay.com/photo/2022/07/06/15/32/button-7305382_960_720.png");
+  background-size: contain;
+  background-position: center;
+  background-repeat: no-repeat;
+  filter: drop-shadow(0 5px 15px rgba(0, 0, 0, 0.2));
+}
+
+.prev-button {
+  left: 20px;
+}
+
+.next-button {
+  right: 20px;
+}
+
+.prev-button:hover, .next-button:hover {
+  transform: translateY(-50%) scale(1.1);
+  filter: drop-shadow(0 8px 20px rgba(0, 0, 0, 0.3));
+}
+
+.prev-button span, .next-button span {
+  display: none;
+}
+.heart-float {
+  position: fixed;
+  top: -50px;
+  font-size: 20px;
+  color: #ff6b6b;
+  animation: heartFloat 10s linear infinite;
+  opacity: 0;
+  z-index: 10;
+}
+
+@keyframes heartFloat {
+  0% {
+    transform: translateY(0) rotate(0deg);
+    opacity: 0;
+  }
+  10% {
+    opacity: 1;
+  }
+  90% {
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(100vh) rotate(360deg);
+    opacity: 0;
+  }
+}
+
+.sparkle-button {
+  position: fixed;
+  top: 100px;
+  right: 30px;
+  background: linear-gradient(135deg, #ff9a9e 0%, #fad0c4 100%);
+  color: white;
+  border: none;
+  border-radius: 50px;
+  padding: 10px 20px;
+  font-size: 16px;
+  cursor: pointer;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.sparkle-button:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 7px 15px rgba(0, 0, 0, 0.2);
+}
+
+.shine-effect {
+  position: relative;
+  overflow: hidden;
+}
+
+.shine-effect:after {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: linear-gradient(
+    to bottom right, 
+    rgba(255,255,255,0) 0%,
+    rgba(255,255,255,0.3) 50%,
+    rgba(255,255,255,0) 100%
+  );
+  transform: rotate(30deg);
+  animation: shine 4s infinite;
+}
+
+@keyframes shine {
+  0%, 100% {
+    left: -50%;
+    top: -50%;
+  }
+  25%, 75% {
+    left: 100%;
+    top: 100%;
+  }
+}

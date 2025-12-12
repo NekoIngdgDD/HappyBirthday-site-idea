@@ -1,0 +1,357 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Pingu's Manga</title>
+    <link rel="icon" type="image/x-icon" href="assets/images/Penguin.png" />
+    <link rel="stylesheet" href="manga.css" />
+    <link rel="stylesheet" href="styles.css" />
+    <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;500;600&family=Comfortaa:wght@400;600&display=swap" rel="stylesheet" />
+  </head>
+  <body>
+    <!-- Theme toggle -->
+    <div class="theme-toggle">
+      <button id="theme-button" onclick="toggleTheme()">🌙</button>
+    </div>
+    
+    <!-- Audio Control -->
+    <div class="audio-control">
+      <button id="music-toggle" onclick="toggleMusic()">🔈</button>
+      <audio id="background-audio" loop>
+        <source src="assets/songs/be my summer.mp3" type="audio/mp3">
+        Your browser does not support the audio element.
+      </audio>
+    </div>
+    
+    <!-- Preloader -->
+    <div class="preloader">
+      <div class="loader-circle"></div>
+      <div class="preloader-penguin">📚</div>
+      <div class="loading-text">Loading Manga...</div>
+    </div>
+    
+    <!-- Top-left badge -->
+    <div class="badge">📚 Pingu's Special Manga</div>
+    
+    <!-- Navigation buttons -->
+    <a href="index.html" class="prev-button">
+      <span>⬅️</span> Back
+    </a>
+    
+    <!-- Floating Decorations -->
+    <div class="balloons">
+      <div class="balloon" style="--delay: 2s; --color: #FF9AA2;">📚</div>
+      <div class="balloon" style="--delay: 3s; --color: #FFB7B2;">🎨</div>
+      <div class="balloon" style="--delay: 4s; --color: #FFDAC1;">🖌️</div>
+      <div class="balloon" style="--delay: 5s; --color: #E2F0CB;">🎭</div>
+      <div class="balloon" style="--delay: 6s; --color: #B5EAD7;">📖</div>
+    </div>
+
+    <!-- Manga container with header -->
+    <div class="glass-container manga-container">
+      <h1 class="manga-title">Special Manga Story</h1>
+      <p class="manga-subtitle">A handcrafted manga just for you</p>
+      
+      <!-- Manga Viewer -->
+      <div class="manga-viewer">
+        <div class="manga-grid">
+          <!-- Manga Page 1 -->
+          <div class="manga-page">
+            <div class="manga-panel panel-1">
+              <img src="assets/images/Page 1.jpg" alt="Manga Panel 1" />
+            </div>
+          </div>
+          
+          <!-- Manga Page 2 -->
+          <div class="manga-page">
+            <div class="manga-panel panel-2">
+              <img src="assets/images/Page 2.jpg" alt="Manga Panel 2" />
+            </div>
+          </div>
+          <!-- Manga Page 3 -->
+          <div class="manga-page">
+            <div class="manga-panel panel-2">
+              <img src="assets/images/Pinu.jpg" alt="Manga Panel 2" />
+            </div>
+          </div>
+          <!-- Manga Page 4-->>
+          <div class="manga-page">
+            <div class="manga-panel panel-2">
+              <img src="assets/images/Pinguw.jpg" alt="Manga Panel 2" />
+            </div>
+          </div>
+          <!-- Additional empty page for new content -->
+          <div class="manga-page create-page">
+            <div class="manga-panel panel-empty">
+              <div class="create-content">
+                <h3>Create Your Chapter</h3>
+                <p>What happens next in the story?</p>
+                <button class="create-btn" onclick="openEditor()">Continue the story</button>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <!-- Manga Navigation -->
+        <div class="manga-navigation">
+          <button class="nav-btn prev-page" onclick="prevPage()">◀ Previous</button>
+          <span class="page-counter">Page <span id="current-page">1</span> of <span id="total-pages">4</span></span>
+          <button class="nav-btn next-page" onclick="nextPage()">Next ▶</button>
+        </div>
+      </div>
+    </div>
+    
+    <!-- Simple Manga Editor (Hidden by default) -->
+    <div id="manga-editor" class="manga-editor-container">
+      <div class="editor-header">
+        <h2>Create Your Manga Page</h2>
+        <button class="close-editor" onclick="closeEditor()">✕</button>
+      </div>
+      <div class="editor-tools">
+        <button class="tool-btn" onclick="selectTool('pen')">✏️ Pen</button>
+        <button class="tool-btn" onclick="selectTool('eraser')">🧽 Eraser</button>
+        <button class="tool-btn" onclick="clearCanvas()">🗑️ Clear</button>
+        <input type="color" id="color-picker" value="#000000">
+        <select id="line-width">
+          <option value="1">Thin</option>
+          <option value="3" selected>Medium</option>
+          <option value="5">Thick</option>
+        </select>
+      </div>
+      <canvas id="drawing-canvas" width="600" height="800"></canvas>
+      <div class="editor-footer">
+        <button class="action-btn save-btn" onclick="saveDrawing()">Save Page</button>
+        <button class="action-btn cancel-btn" onclick="closeEditor()">Cancel</button>
+      </div>
+    </div>
+
+    <!-- Scripts -->
+    <script>
+      // Dark/light theme
+      function toggleTheme() {
+        const body = document.body;
+        const themeButton = document.getElementById("theme-button");
+
+        if (body.classList.contains("dark-theme")) {
+          body.classList.remove("dark-theme");
+          themeButton.textContent = "🌙"; // moon for dark mode
+          localStorage.setItem("theme", "light");
+        } else {
+          body.classList.add("dark-theme");
+          themeButton.textContent = "☀️"; // sun for light mode
+          localStorage.setItem("theme", "dark");
+        }
+      }
+
+      // Check for saved theme preference
+      const savedTheme = localStorage.getItem("theme");
+      if (savedTheme === "dark") {
+        document.body.classList.add("dark-theme");
+        document.getElementById("theme-button").textContent = "☀️";
+      }
+
+      // Preloader
+      window.addEventListener("load", function () {
+        setTimeout(() => {
+          document.querySelector(".preloader").classList.add("preloader-fade");
+          setTimeout(() => {
+            document.querySelector(".preloader").classList.add("preloader-hidden");
+            // Start audio after preloader
+            initBackgroundMusic();
+          }, 500);
+        }, 1500);
+      });
+
+      // Background Music Functions
+      function initBackgroundMusic() {
+        const audio = document.getElementById("background-audio");
+        audio.volume = 0.05; // Set to very low volume
+        
+        // Try to play music (browsers may block autoplay)
+        audio.play().catch((e) => {
+          console.log("Auto-play prevented:", e);
+          document.getElementById("music-toggle").textContent = "🔇";
+        });
+      }
+      
+      function toggleMusic() {
+        const audio = document.getElementById("background-audio");
+        const musicButton = document.getElementById("music-toggle");
+        
+        if (audio.paused) {
+          audio.play();
+          musicButton.textContent = "🔈";
+        } else {
+          audio.pause();
+          musicButton.textContent = "🔇";
+        }
+      }
+
+      // Manga Navigation
+      let currentPage = 1;
+      const totalPages = 4;
+      
+      function updatePageCounter() {
+        document.getElementById("current-page").textContent = currentPage;
+        document.getElementById("total-pages").textContent = totalPages;
+      }
+      
+      function prevPage() {
+        if (currentPage > 1) {
+          currentPage--;
+          updatePageDisplay();
+          scrollToTop();
+        }
+      }
+      
+      function nextPage() {
+        if (currentPage < totalPages) {
+          currentPage++;
+          updatePageDisplay();
+          scrollToTop();
+        }
+      }
+      
+      function scrollToTop() {
+        document.querySelector('.manga-container').scrollIntoView({ behavior: 'smooth' });
+      }
+      
+      function updatePageDisplay() {
+        updatePageCounter();
+        const pages = document.querySelectorAll('.manga-page');
+        pages.forEach((page, index) => {
+          if (index + 1 === currentPage) {
+            page.style.display = 'block';
+          } else {
+            page.style.display = 'none';
+          }
+        });
+      }
+      
+      // Initialize the manga viewer
+      document.addEventListener('DOMContentLoaded', function() {
+        updatePageCounter();
+        updatePageDisplay();
+      });
+      
+      // Simple Canvas Drawing Functions
+      let canvas, ctx;
+      let isDrawing = false;
+      let currentTool = 'pen';
+      
+      function openEditor() {
+        document.getElementById('manga-editor').style.display = 'block';
+        canvas = document.getElementById('drawing-canvas');
+        ctx = canvas.getContext('2d');
+        
+        // Canvas event listeners
+        canvas.addEventListener('mousedown', startDrawing);
+        canvas.addEventListener('mousemove', draw);
+        canvas.addEventListener('mouseup', stopDrawing);
+        canvas.addEventListener('mouseout', stopDrawing);
+        
+        // Touch support
+        canvas.addEventListener('touchstart', handleTouch);
+        canvas.addEventListener('touchmove', handleTouch);
+        canvas.addEventListener('touchend', stopDrawing);
+      }
+      
+      function closeEditor() {
+        document.getElementById('manga-editor').style.display = 'none';
+      }
+      
+      function startDrawing(e) {
+        isDrawing = true;
+        draw(e);
+      }
+      
+      function draw(e) {
+        if (!isDrawing) return;
+        
+        ctx.lineWidth = document.getElementById('line-width').value;
+        ctx.lineCap = 'round';
+        
+        if (currentTool === 'pen') {
+          ctx.strokeStyle = document.getElementById('color-picker').value;
+        } else if (currentTool === 'eraser') {
+          ctx.strokeStyle = '#FFFFFF';
+        }
+        
+        ctx.beginPath();
+        
+        // Handle both mouse and touch events
+        const x = e.clientX || e.touches[0].clientX;
+        const y = e.clientY || e.touches[0].clientY;
+        
+        const rect = canvas.getBoundingClientRect();
+        const canvasX = x - rect.left;
+        const canvasY = y - rect.top;
+        
+        ctx.lineTo(canvasX, canvasY);
+        ctx.stroke();
+        ctx.beginPath();
+        ctx.moveTo(canvasX, canvasY);
+      }
+      
+      function handleTouch(e) {
+        const touch = e.touches[0];
+        const mouseEvent = new MouseEvent('mousedown', {
+          clientX: touch.clientX,
+          clientY: touch.clientY
+        });
+        canvas.dispatchEvent(mouseEvent);
+        e.preventDefault();
+      }
+      
+      function stopDrawing() {
+        isDrawing = false;
+        ctx.beginPath();
+      }
+      
+      function selectTool(tool) {
+        currentTool = tool;
+        const toolButtons = document.querySelectorAll('.tool-btn');
+        toolButtons.forEach(btn => btn.classList.remove('active'));
+        event.target.classList.add('active');
+      }
+      
+      function clearCanvas() {
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+      }
+      
+      function saveDrawing() {
+        const dataURL = canvas.toDataURL('image/png');
+        
+        // In a real implementation, you would save this dataURL to the server
+        // For this demo, we'll just display the drawing in the manga
+        
+        // Create a new manga page
+        const newPage = document.createElement('div');
+        newPage.className = 'manga-page';
+        
+        const newPanel = document.createElement('div');
+        newPanel.className = 'manga-panel';
+        
+        const newImage = document.createElement('img');
+        newImage.src = dataURL;
+        newImage.alt = 'User Created Manga';
+        
+        newPanel.appendChild(newImage);
+        newPage.appendChild(newPanel);
+        
+        // Add the new page to the manga-grid
+        document.querySelector('.manga-grid').appendChild(newPage);
+        
+        // Update total pages
+        document.getElementById('total-pages').textContent = document.querySelectorAll('.manga-page').length;
+        
+        // Close the editor
+        closeEditor();
+        
+        // Alert the user
+        alert('Your manga page has been saved!');
+      }
+    </script>
+  </body>
+</html> 
