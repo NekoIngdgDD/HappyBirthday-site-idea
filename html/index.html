@@ -1,0 +1,469 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Welcome Pingu! | Birthday Celebration</title>
+    <meta
+      name="description"
+      content="A special birthday celebration for Pingu! Join us for gifts, memories and wishes."
+    />
+    <meta
+      name="keywords"
+      content="birthday, celebration, pingu, gifts, wishes, happy birthday"
+    />
+
+    <!-- Open Graph / Social Media Meta Tags -->
+    <meta property="og:title" content="Pingu's Birthday Celebration" />
+    <meta
+      property="og:description"
+      content="Join us in celebrating Pingu's special day with wishes, gifts and memories!"
+    />
+    <meta property="og:image" content="/assets/images/pingu.png" />
+    <meta property="og:url" content="https://pingusbirthday.com" />
+    <meta property="og:type" content="website" />
+
+    <link rel="icon" type="image/x-icon" href="assets/images/Penguin.png" />
+    <link rel="stylesheet" href="index.css" />
+    <link rel="stylesheet" href="styles.css" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;600&family=Comfortaa:wght@400;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="shortcut icon"
+      href="/assets/images/favicon.ico"
+      type="image/x-icon"
+    />
+  </head>
+  <body>
+    <!-- Snow Effect -->
+    <div class="snowflakes" aria-hidden="true">
+      <div class="snowflake">❅</div>
+      <div class="snowflake">❆</div>
+      <div class="snowflake">❄</div>
+      <div class="snowflake">❅</div>
+      <div class="snowflake">❆</div>
+      <div class="snowflake">❄</div>
+      <div class="snowflake">🎂</div>
+      <div class="snowflake">🎁</div>
+      <div class="snowflake">🎈</div>
+      <div class="snowflake">🎉</div>
+    </div>
+    
+    <!-- Theme toggle -->
+    <div class="theme-toggle">
+      <button id="theme-button" onclick="toggleTheme()">🌙</button>
+    </div>
+    
+    <!-- Audio Control -->
+    <div class="audio-control">
+      <button id="music-toggle" onclick="toggleMusic()">🔈</button>
+      <audio id="background-audio" loop>
+        <source src="assets/songs/NewJeans 'New Jeans (ft. The Powerpuff Girls)' Lyrics (뉴진스 New Jeans 가사) (Color Coded Lyrics).mp3" type="audio/mp3">
+        Your browser does not support the audio element.
+      </audio>
+    </div>
+
+    <!-- Preloader -->
+    <div class="preloader">
+      <div class="loader-circle"></div>
+      <div class="preloader-penguin">🐧</div>
+      <div class="loading-text">Loading Birthday Magic...</div>
+    </div>
+
+    <!-- Top-left badge -->
+    <div class="badge" id="badge-text">🎉 Pingu's Day!</div>
+
+    <!-- Main content wrapper -->
+    <div class="home-content">
+      <div class="glass-container">
+        <h1 class="welcome-text">Welcome, Pingu! 💖</h1>
+
+        <!-- Flipping Card - Now clickable to go to Biu page -->
+        <div class="card" id="main-card" onclick="navigateTo('biu.html')">
+          <div class="card-inner">
+            <div class="card-front">
+              <img src="/assets/images/pingu.png" alt="Pingu the Penguin" />
+              <div class="sparkles-overlay"></div>
+            </div>
+            <div class="card-back">
+              <img src="/assets/images/neko.png" alt="Neko the Cat" />
+              <div class="sparkles-overlay"></div>
+            </div>
+          </div>
+          <div class="card-hint">Click to see gifts</div>
+        </div>
+
+        <!-- Quick Nav Buttons -->
+        <div class="quick-nav">
+          <button class="quick-nav-btn" onclick="navigateTo('timeline.html')">
+            <span class="btn-icon">📅</span>
+            <span>Timeline</span>
+          </button>
+          <button class="quick-nav-btn" onclick="navigateTo('wish.html')">
+            <span class="btn-icon">💌</span>
+            <span>Cake</span>
+          </button>
+          <button class="quick-nav-btn" onclick="navigateTo('manga.html')">
+            <span class="btn-icon">📚</span>
+            <span>Manga</span>
+        </div>
+
+        <!-- Countdown section -->
+        <div class="countdown-section">
+          <h3>Your special day is here!</h3>
+          <div class="countdown-display">
+            <div class="countdown-item">
+              <span id="days" class="count-number">0</span>
+              <span class="count-label">Days</span>
+            </div>
+            <div class="countdown-item">
+              <span id="hours" class="count-number">0</span>
+              <span class="count-label">Hours</span>
+            </div>
+            <div class="countdown-item">
+              <span id="minutes" class="count-number">0</span>
+              <span class="count-label">Minutes</span>
+            </div>
+            <div class="countdown-item">
+              <span id="seconds" class="count-number">0</span>
+              <span class="count-label">Seconds</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Bouncing emoji -->
+      <div class="bouncing-emoji">
+        <span>🎉</span>
+        <span>🎊</span>
+        <span>🎂</span>
+        <span>🎁</span>
+        <span>🥳</span>
+      </div>
+    </div>
+
+    <!-- Floating Balloons -->
+    <div class="balloons">
+      <div class="balloon" style="--delay: 2s; --color: #ff9aa2">🎈</div>
+      <div class="balloon" style="--delay: 3s; --color: #ffb7b2">🎈</div>
+      <div class="balloon" style="--delay: 4s; --color: #ffdac1">🎈</div>
+      <div class="balloon" style="--delay: 5s; --color: #e2f0cb">🎈</div>
+      <div class="balloon" style="--delay: 6s; --color: #b5ead7">🎈</div>
+      <div class="balloon" style="--delay: 4s; --color: #c7ceea">🎈</div>
+      <div class="balloon" style="--delay: 7s; --color: #ffc8dd">🎈</div>
+      <div class="balloon" style="--delay: 8s; --color: #ee99ee">🎈</div>
+      <div class="balloon" style="--delay: 9s; --color: #aaffe8">🎈</div>
+    </div>
+
+    <!-- Bottom-left controls -->
+    <div class="controls-bottom-left">
+      <select
+        id="language-select"
+        class="language-select"
+        onchange="changeLanguage()"
+      >
+        <option value="en">🇬🇧 English</option>
+        <option value="ko">🇰🇷 한국어</option>
+        <option value="mn">🇲🇳 Монгол</option>
+      </select>
+    </div>
+
+    <!-- Paw Trail -->
+    <div class="paw-trail">
+      <span>🐾</span>
+      <span>🐧</span>
+    </div>
+
+    <!-- Confetti container -->
+    <div id="confetti-container"></div>
+
+    <!-- Scripts -->
+    <script>
+      // Dark/light theme
+      function toggleTheme() {
+        const body = document.body;
+        const themeButton = document.getElementById("theme-button");
+
+        if (body.classList.contains("dark-theme")) {
+          body.classList.remove("dark-theme");
+          themeButton.textContent = "🌙"; // moon for dark mode
+          localStorage.setItem("theme", "light");
+        } else {
+          body.classList.add("dark-theme");
+          themeButton.textContent = "☀️"; // sun for light mode
+          localStorage.setItem("theme", "dark");
+        }
+      }
+
+      // Check for saved theme preference
+      const savedTheme = localStorage.getItem("theme");
+      if (savedTheme === "dark") {
+        document.body.classList.add("dark-theme");
+        document.getElementById("theme-button").textContent = "☀️";
+      }
+      
+      // Background Music Functions
+      function initBackgroundMusic() {
+        const audio = document.getElementById("background-audio");
+        audio.volume = 0.05; // Set to very low volume
+        
+        // Try to play music (browsers may block autoplay)
+        audio.play().catch((e) => {
+          console.log("Auto-play prevented:", e);
+          document.getElementById("music-toggle").textContent = "🔇";
+        });
+      }
+      
+      function toggleMusic() {
+        const audio = document.getElementById("background-audio");
+        const musicButton = document.getElementById("music-toggle");
+        
+        if (audio.paused) {
+          audio.play();
+          musicButton.textContent = "🔈";
+        } else {
+          audio.pause();
+          musicButton.textContent = "🔇";
+        }
+      }
+
+      // Preloader with improved animation
+      window.addEventListener("load", function () {
+        setTimeout(() => {
+          document.querySelector(".preloader").classList.add("preloader-fade");
+          setTimeout(() => {
+            document
+              .querySelector(".preloader")
+              .classList.add("preloader-hidden");
+            // Start audio after preloader
+            initBackgroundMusic();
+          }, 500);
+        }, 1500);
+      });
+
+      // Navigation function
+      function navigateTo(page) {
+        // Add page transition effect
+        document.body.classList.add("page-transition");
+        setTimeout(() => {
+          window.location.href = page;
+        }, 300);
+      }
+
+      const languageText = {
+        en: {
+          badge: "🎉 Pingu's Day!",
+          cardHint: "Click to see gifts",
+          welcome: "Welcome, Pingu! 💖",
+          countdown: "Your special day is here!",
+          loading: "Loading Birthday Magic...",
+          memories: "Timeline",
+          wishes: "Cake",
+          messages: "Manga",
+        },
+        ko: {
+          badge: "🎉 핑구의 날!",
+          cardHint: "선물 보기",
+          welcome: "환영합니다, 핑구! 💖",
+          countdown: "특별한 날이 왔어요!",
+          loading: "생일 마법 로딩 중...",
+          memories: "타임라인",
+          wishes: "케이크",
+          messages: "만화",
+        },
+        mn: {
+          badge: "🎉 Пингугийн өдөр!",
+          cardHint: "Бэлэг харах",
+          welcome: "Тавтай морил, Пингу! 💖",
+          countdown: "Чиний онцгой өдөр ирлээ!",
+          loading: "Төрсөн өдрийн шидийг ачаалж байна...",
+          memories: "Цагийн шугам",
+          wishes: "Бялуу",
+          messages: "Манга",
+        },
+      };
+
+      function changeLanguage() {
+        const lang = document.getElementById("language-select").value;
+        document.getElementById("badge-text").textContent =
+          languageText[lang].badge;
+        document.querySelector(".welcome-text").textContent =
+          languageText[lang].welcome;
+
+        // Update card hint
+        document.querySelector(".card-hint").textContent =
+          languageText[lang].cardHint;
+
+        // Update countdown heading
+        document.querySelector(".countdown-section h3").textContent =
+          languageText[lang].countdown;
+
+        // Update loading text
+        document.querySelector(".loading-text").textContent =
+          languageText[lang].loading;
+
+        // Update navigation buttons
+        const navButtons = document.querySelectorAll(
+          ".quick-nav-btn span:not(.btn-icon)"
+        );
+        navButtons[0].textContent = languageText[lang].memories;
+        navButtons[1].textContent = languageText[lang].wishes;
+        navButtons[2].textContent = languageText[lang].messages;
+        navButtons[3].textContent = languageText[lang].gifts;
+      }
+
+      // Real birthday countdown
+      function updateCountdown() {
+        const now = new Date();
+        const birthday = new Date(now.getFullYear(), 5, 1); // June 1st (month is 0-indexed, so 5 = June)
+
+        // If today's date is past this year's birthday, set for next year
+        if (now > birthday) {
+          birthday.setFullYear(birthday.getFullYear() + 1);
+        }
+
+        const diff = birthday - now;
+
+        // Check if it's birthday!
+        if (diff <= 0 && diff > -24 * 60 * 60 * 1000) {
+          document.getElementById("days").textContent = "0";
+          document.getElementById("hours").textContent = "0";
+          document.getElementById("minutes").textContent = "0";
+          document.getElementById("seconds").textContent = "0";
+
+          // Show birthday mode!
+          if (!document.body.classList.contains("birthday-mode")) {
+            document.body.classList.add("birthday-mode");
+            createConfetti(100);
+            // Play birthday animation every minute
+            setInterval(() => createConfetti(50), 60000);
+          }
+          return;
+        }
+
+        const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+        const hours = Math.floor(
+          (diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)
+        );
+        const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+        const seconds = Math.floor((diff % (1000 * 60)) / 1000);
+
+        document.getElementById("days").textContent = days;
+        document.getElementById("hours").textContent = hours;
+        document.getElementById("minutes").textContent = minutes;
+        document.getElementById("seconds").textContent = seconds;
+
+        // Add pulse animation on seconds change
+        document.getElementById("seconds").classList.add("pulse");
+        setTimeout(() => {
+          document.getElementById("seconds").classList.remove("pulse");
+        }, 500);
+
+        // Update every second
+        setTimeout(updateCountdown, 1000);
+      }
+
+      // Improved confetti function
+      function createConfetti(amount) {
+        const container = document.getElementById("confetti-container");
+        const shapes = ["circle", "square", "triangle"];
+
+        for (let i = 0; i < amount; i++) {
+          const confetti = document.createElement("div");
+
+          // Randomly choose between emoji or shape
+          if (Math.random() > 0.7) {
+            // Emoji confetti
+            confetti.className = "confetti-emoji";
+            const emojis = ["🎉", "🎊", "🎂", "🎁", "🎈", "✨", "💖", "🐧"];
+            confetti.textContent =
+              emojis[Math.floor(Math.random() * emojis.length)];
+          } else {
+            // Shape confetti
+            const shapeType = shapes[Math.floor(Math.random() * shapes.length)];
+            confetti.className = `confetti confetti-${shapeType}`;
+
+            // Random properties
+            const size = Math.random() * 10 + 5;
+            const colors = [
+              "#ff9aa2",
+              "#ffb7b2",
+              "#ffdac1",
+              "#e2f0cb",
+              "#b5ead7",
+              "#c7ceea",
+              "#f9c1bb",
+              "#ffd6e0",
+            ];
+            const color = colors[Math.floor(Math.random() * colors.length)];
+
+            confetti.style.width = `${size}px`;
+            confetti.style.height = `${size}px`;
+            confetti.style.backgroundColor = color;
+          }
+
+          // Random position
+          confetti.style.left = `${Math.random() * 100}%`;
+          confetti.style.top = `-20px`;
+
+          // Random rotation and delay
+          confetti.style.transform = `rotate(${Math.random() * 360}deg)`;
+          confetti.style.animationDelay = `${Math.random() * 3}s`;
+          confetti.style.animationDuration = `${Math.random() * 2 + 3}s`;
+
+          container.appendChild(confetti);
+
+          // Remove after animation
+          setTimeout(() => {
+            if (confetti.parentNode === container) {
+              container.removeChild(confetti);
+            }
+          }, 6000);
+        }
+      }
+
+      // Initialize animations
+      document.addEventListener("DOMContentLoaded", function () {
+        updateCountdown();
+
+        // Random floating balloons
+        const balloons = document.querySelectorAll(".balloon");
+        balloons.forEach((balloon) => {
+          setInterval(() => {
+            balloon.style.animationDuration = Math.random() * 10 + 10 + "s";
+            balloon.style.left = Math.random() * 90 + 5 + "%";
+          }, 15000);
+        });
+
+        // Create occasional confetti
+        setInterval(() => {
+          createConfetti(5);
+        }, 30000);
+
+        // Paw trail animation
+        document.addEventListener("mousemove", function (e) {
+          // Only create paw print every 300ms to avoid too many
+          if (!window.lastPawTime || Date.now() - window.lastPawTime > 300) {
+            const pawPrint = document.createElement("div");
+            pawPrint.className = "paw-print";
+            pawPrint.textContent = Math.random() > 0.5 ? "🐾" : "🐧";
+            pawPrint.style.left = e.clientX - 10 + "px";
+            pawPrint.style.top = e.clientY - 10 + "px";
+            document.body.appendChild(pawPrint);
+
+            // Remove after animation
+            setTimeout(() => {
+              if (pawPrint.parentNode) {
+                pawPrint.parentNode.removeChild(pawPrint);
+              }
+            }, 2000);
+
+            window.lastPawTime = Date.now();
+          }
+        });
+      });
+    </script>
+  </body>
+</html>

@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Biu</title>
+    <meta name="language" content="en-US" />
+    <meta name="title" content="Dear Sun" />
+    <meta
+      name="description"
+      content="Collecting this wasn't easy — your star is my motivation to keep going! Contributions are welcome too."
+    />
+    <link rel="icon" type="image/x-icon" href="assets/images/Penguin.png" />
+    <link rel="stylesheet" href="biu.css" />
+    <link rel="stylesheet" href="styles.css" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;500;600&family=Comfortaa:wght@400;600&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      /* Additional styles to improve UI */
+      body {
+        background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+      }
+      
+      .biu-badge {
+        position: fixed;
+        top: 20px;
+        left: 20px;
+        background: linear-gradient(45deg, #ff9a9e, #fad0c4);
+        color: #fff;
+        font-size: 20px;
+        padding: 10px 20px;
+        border-radius: 25px;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
+        z-index: 5;
+        font-weight: bold;
+        font-family: "Comfortaa", cursive;
+        animation: pulse 2s infinite;
+      }
+
+      @keyframes pulse {
+        0% {
+          box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
+          transform: scale(1);
+        }
+        50% {
+          box-shadow: 0 8px 20px rgba(255, 154, 158, 0.4);
+          transform: scale(1.05);
+        }
+        100% {
+          box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
+          transform: scale(1);
+        }
+      }
+      
+      .prev-button, .next-button {
+        background: linear-gradient(45deg, #ff9a9e, #fad0c4);
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
+        transition: all 0.4s ease;
+        color: white;
+        font-weight: 600;
+      }
+      
+      .prev-button:hover, .next-button:hover {
+        background: linear-gradient(45deg, #ff8a8e, #f8c0b4);
+        transform: translateY(-3px);
+        box-shadow: 0 8px 20px rgba(255, 154, 158, 0.4);
+      }
+      
+      /* Floating particles */
+      .particles {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        z-index: -1;
+        pointer-events: none;
+      }
+      
+      .particle {
+        position: absolute;
+        background: rgba(255, 154, 158, 0.3);
+        border-radius: 50%;
+        animation: float 15s infinite linear;
+      }
+      
+      @keyframes float {
+        0% {
+          transform: translateY(0) rotate(0deg);
+          opacity: 0;
+        }
+        20% {
+          opacity: 0.8;
+        }
+        80% {
+          opacity: 0.8;
+        }
+        100% {
+          transform: translateY(-100vh) rotate(360deg);
+          opacity: 0;
+        }
+      }
+      
+      /* Audio control button */
+      .audio-control {
+        position: fixed;
+        top: 20px;
+        right: 20px;
+        background: white;
+        color: #ff9a9e;
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 20px;
+        cursor: pointer;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
+        z-index: 10;
+        transition: all 0.3s ease;
+      }
+      
+      .audio-control:hover {
+        transform: scale(1.1);
+        box-shadow: 0 8px 20px rgba(255, 154, 158, 0.4);
+      }
+      
+      /* Fix for heart white background */
+      .love .block div {
+        background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath fill='%23e61a1a' d='M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z'/%3E%3C/svg%3E") !important;
+        background-size: contain !important;
+        background-position: center !important;
+        background-repeat: no-repeat !important;
+      }
+      
+      /* Adjust animation for heart formation */
+      .love .block {
+        background-color: transparent !important;
+        visibility: visible !important;
+        opacity: 0;
+        animation: fadeIn 0.5s forwards;
+      }
+      
+      @keyframes fadeIn {
+        to {
+          opacity: 1;
+        }
+      }
+      
+      /* Custom heart style */
+      .custom-heart {
+        width: 40px;
+        height: 40px;
+        background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath fill='%23e61a1a' d='M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z'/%3E%3C/svg%3E");
+        background-size: contain;
+        background-position: center;
+        background-repeat: no-repeat;
+        display: inline-block;
+        animation: heartBeat 1.5s infinite;
+      }
+      
+      @keyframes heartBeat {
+        0%, 100% {
+          transform: scale(1);
+        }
+        15% {
+          transform: scale(1.15);
+        }
+        30% {
+          transform: scale(1);
+        }
+        45% {
+          transform: scale(1.15);
+        }
+      }
+    </style>
+  </head>
+
+  <body>
+    <!-- Theme toggle -->
+    <div class="theme-toggle">
+      <button id="theme-button" onclick="toggleTheme()">🌙</button>
+    </div>
+    
+    <!-- Preloader -->
+    <div class="preloader">
+      <div class="loader-circle"></div>
+      <div class="preloader-penguin">❤️</div>
+      <div class="loading-text">Loading Hearts...</div>
+    </div>
+
+    <!-- Top-left Badge -->
+    <div class="badge">❤️ Biu</div>
+    
+    <!-- Navigation buttons with new classes -->
+    <a href="index.html" class="biu-nav-button biu-nav-prev">
+      <span>⬅️</span> Back
+    </a>
+    
+    <a href="memories.html" class="biu-nav-button biu-nav-next">
+      Next <span>➡️</span>
+    </a>
+
+    <!-- Floating Balloons -->
+    <div class="balloons">
+      <div class="balloon" style="--delay: 2s; --color: #FF9AA2;">❤️</div>
+      <div class="balloon" style="--delay: 3s; --color: #FFB7B2;">💖</div>
+      <div class="balloon" style="--delay: 4s; --color: #FFDAC1;">💕</div>
+      <div class="balloon" style="--delay: 5s; --color: #E2F0CB;">💓</div>
+      <div class="balloon" style="--delay: 6s; --color: #B5EAD7;">❣️</div>
+    </div>
+
+    <!-- Main content in glass container -->
+    <div class="glass-container biu-container">
+      <h1 class="biu-title">Heart Animation</h1>
+      <p class="biu-subtitle">Watch the hearts form a beautiful pattern</p>
+      
+      <div class="biu-content">
+        <div class="body_left">
+          <img
+            src="assets/images/biubiubiu.gif"
+            alt=""
+            ondragstart="return false;"
+          />
+        </div>
+
+        <div class="body_center love">
+          <div class="block">
+            <div class="div1"></div>
+            <div class="div2"></div>
+            <div class="div3"></div>
+            <div class="div4"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script type="text/javascript" src="love.js"></script>
+    <script>
+      // Dark/light theme toggle
+      function toggleTheme() {
+        const body = document.body;
+        const themeButton = document.getElementById('theme-button');
+        
+        if (body.classList.contains('dark-theme')) {
+          body.classList.remove('dark-theme');
+          themeButton.textContent = '🌙'; // moon for dark mode
+          localStorage.setItem('theme', 'light');
+        } else {
+          body.classList.add('dark-theme');
+          themeButton.textContent = '☀️'; // sun for light mode
+          localStorage.setItem('theme', 'dark');
+        }
+      }
+      
+      // Check for saved theme preference
+      const savedTheme = localStorage.getItem('theme');
+      if (savedTheme === 'dark') {
+        document.body.classList.add('dark-theme');
+        document.getElementById('theme-button').textContent = '☀️';
+      }
+      
+
+      // Initialize on document load
+      document.addEventListener('DOMContentLoaded', function() {        
+        // Preloader
+        setTimeout(() => {
+          document.querySelector('.preloader').classList.add('preloader-fade');
+          setTimeout(() => {
+            document.querySelector('.preloader').classList.add('preloader-hidden');
+            
+
+            // Animate title and content
+            document.querySelector('.biu-title').style.opacity = '1';
+            document.querySelector('.biu-subtitle').style.opacity = '1';
+            setTimeout(() => {
+              document.querySelector('.biu-content').style.opacity = '1';
+              document.querySelector('.biu-content').style.transform = 'translateY(0)';
+            }, 300);
+          }, 500);
+        }, 1500);
+        
+        // Navigation with page transition
+        document.querySelectorAll('.biu-nav-button').forEach(btn => {
+          btn.addEventListener('click', function(e) {
+            e.preventDefault();
+            const targetPage = this.getAttribute('href');
+            
+            // Add page transition effect
+            document.body.classList.add('page-transition');
+            setTimeout(() => {
+              window.location.href = targetPage;
+            }, 300);
+          });
+        });
+      });
+    </script>
+  </body>
+</html>
